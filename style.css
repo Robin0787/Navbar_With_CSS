@@ -1,0 +1,91 @@
+:root {
+  --body-bg: #123;
+  --nav-bg: rgb(69, 92, 115);
+  --border-radius: 1.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: white;
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  gap: 2rem;
+  min-height: 200vh;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  max-height: 100svh;
+  background-color: var(--nav-bg);
+}
+
+.nav-list {
+  list-style: none;
+  display: grid;
+  gap: 4rem;
+  padding-block: 2rem;
+}
+
+.nav-list li {
+  background-color: var(--nav-bg);
+  padding: 1.2rem 1.5rem;
+  margin-left: 2rem;
+  border-radius: 100vw 0 0 100vw;
+}
+
+.nav-list li.active {
+  view-transition-name: activeNabTab;
+  background-color: var(--body-bg);
+  position: relative;
+}
+
+::view-transition-group(activeNabTab) {
+  animation-duration: 0.3s;
+}
+
+.nav-list li.active::before,
+.nav-list li.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: var(--border-radius);
+  height: var(--border-radius);
+  background-color: var(--nav-bg);
+  border-radius: 100vw;
+}
+
+.nav-list li.active::before {
+  top: calc(var(--border-radius) * -1);
+  border-radius: 0 0 100vw 0;
+  box-shadow: 5px 5px 0 5px var(--body-bg);
+}
+.nav-list li.active::after {
+  bottom: calc(var(--border-radius) * -1);
+  border-radius: 0 100vw 0 0;
+  box-shadow: 5px -5px 0 5px var(--body-bg);
+}
+
+.nav-list a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+main {
+  padding-block: 2rem;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
